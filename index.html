@@ -1,4 +1,213 @@
 <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dwi Putra Wibowo - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/a2d9d4c2e5.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --main-bg: #ffffff;
+      --main-text: #1a1a1a;
+      --accent: #007BFF;
+      --card-bg: #f7f9fc;
+    }
+
+    [data-theme="dark"] {
+      --main-bg: #121212;
+      --main-text: #ffffff;
+      --accent: #66B2FF;
+      --card-bg: #1e1e1e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--main-bg);
+      color: var(--main-text);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+      background: var(--card-bg);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .toggle-theme {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+    }
+
+    canvas#tsparticles {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="tsparticles"></div>
+
+  <div class="toggle-theme" onclick="toggleTheme()">
+    <i id="theme-icon" class="fas fa-moon"></i>
+  </div>
+
+  <header>
+    <h1>Dwi Putra Wibowo</h1>
+    <p class="tagline">Frontend Developer • Bot Builder (WA & Telegram)</p>
+  </header>
+
+  <section>
+    <h2>Tentang Saya</h2>
+    <p>Saya adalah seorang Frontend Developer yang juga ahli dalam pengembangan bot WhatsApp Multi-device dan Telegram. Saya berpengalaman dalam membangun sistem otomatisasi dan integrasi API menggunakan Node.js dan Python, serta menyukai desain UI modern dan responsif.</p>
+  </section>
+
+  <section>
+    <h2>My Projects</h2>
+    <div class="projects">
+      <div class="card" onclick="openModal('https://via.placeholder.com/800x500?text=WA+Bot+Store')">
+        <h3>WhatsApp Bot Store</h3>
+        <p>Multi-device WhatsApp bot store dengan fitur lengkap dan UI modern.</p>
+      </div>
+      <div class="card" onclick="openModal('https://via.placeholder.com/800x500?text=Telegram+Bot+Store')">
+        <h3>Telegram Bot Store</h3>
+        <p>Bot Telegram untuk transaksi digital dan kontrol otomatis.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Dokumentasi" />
+  </div>
+
+  <footer>
+    &copy; 2025 Dwi Putra Wibowo — dwiputrawibowo2009@gmail.com
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      const icon = document.getElementById("theme-icon");
+      if (current === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        icon.classList.replace("fa-sun", "fa-moon");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+    }
+
+    function openModal(src) {
+      document.getElementById("modal-img").src = src;
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    tsParticles.load("tsparticles", {
+      background: {
+        color: {
+          value: "transparent"
+        }
+      },
+      particles: {
+        color: { value: "#007BFF" },
+        links: { enable: true, color: "#007BFF" },
+        move: { enable: true, speed: 1 },
+        number: { value: 60 },
+        size: { value: 2 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+        },
+        modes: {
+          repulse: { distance: 50 }
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+</body>
+
+</html><!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
